@@ -24,7 +24,8 @@ function getPlayerChoice(){
         playerChoice = 2;
         return playerChoice;
     } else {
-        console.log ("Please enter either 'rock', paper', or 'scissors'.");
+        playerChoice = 3;
+        return playerChoice;
     }
 }
 
@@ -34,6 +35,7 @@ function playRound(x, y){
    y = getComputerChoice();
   
     
+  
     if (y === x) {
         ties ++;
         return ["It's a tie!", x, y];
@@ -58,8 +60,8 @@ function playRound(x, y){
     } else {
         playRound();
     }
-
 }
+   
 
 function game(){
 
