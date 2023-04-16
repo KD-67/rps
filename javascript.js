@@ -9,15 +9,13 @@ function getComputerChoice(){
     return computerChoice;
 }
 
-function validateInput(x){
-    
-}
-
 function getPlayerChoice(){
     let playerChoice = prompt("Choose rock paper or scissors");
-    while (playerChoice === null){
+    /*
+        while (playerChoice === null){
         playerChoice = prompt("Choose rock paper or scissors");
     }
+    */
 
     playerChoice = playerChoice.toUpperCase();
     
@@ -65,10 +63,9 @@ function playRound(x, y){
         losses ++;
         return ["You lose! Scissors beats paper!", x, y];
     } else {
-        playRound();
-        return "TRY AGAIN"
+        console.log("TRY AGAIN");
+        return playRound(x, y);
     }
-
 }
    
 
