@@ -1,87 +1,75 @@
+// GAME PLAY
 // 0-ROCK; 1-PAPER; 2-SCISSORS
 
 let wins = 0;
 let losses = 0;
 let ties = 0;
 
+const btn_test = document.querySelector('#btn_test');
+const page_title = document.querySelector('#page_title')
+const btn_r = document.querySelector('#btn_r');
+const btn_p = document.querySelector('#btn_p');
+const btn_s = document.querySelector('#btn_s');
+const win_counter = document.querySelector('#wins');
+const loss_counter = document.querySelector('#losses');
+const tie_counter = document.querySelector('#ties');
+const winner_counter = document.querySelector('#winner_counter')
+
+
+
+//Buttons:
+
+btn_r.addEventListener('click', () => {
+    playRound(0, getComputerChoice());
+});
+
+btn_p.addEventListener('click', () => {
+    playRound(1, getComputerChoice())
+});
+
+btn_s.addEventListener('click', () => {
+    playRound(2, getComputerChoice())
+});
+
+btn_test.addEventListener('click', () => {
+    page_title.textContent = "poop";
+});
+
+//Functions:
+
 function getComputerChoice(){
     let computerChoice = Math.floor(Math.random() * 3);
     return computerChoice;
 }
 
-function getPlayerChoice(){
-    let playerChoice = prompt("Choose rock paper or scissors");
-    /*
-        while (playerChoice === null){
-        playerChoice = prompt("Choose rock paper or scissors");
-    }
-    */
-
-    playerChoice = playerChoice.toUpperCase();
-    
-    if (playerChoice === "ROCK"){
-        playerChoice = 0;
-        return playerChoice;
-    } else if (playerChoice === "PAPER"){
-        playerChoice = 1;
-        return playerChoice;
-    } else if (playerChoice === "SCISSORS"){
-        playerChoice = 2;
-        return playerChoice;
-    } else {
-        playerChoice = 3;
-        return playerChoice;
-    }
-}
-
-
 function playRound(x, y){
-   x = getPlayerChoice();
    y = getComputerChoice();
-  
-    
   
     if (y === x) {
         ties ++;
-        return ["It's a tie!", x, y];
+        tie_counter.innerHTML = ties;
     } else if (y === 0 && x === 1){
         wins ++;
-        return ["You win! Paper beats rock!", x, y];
+        win_counter.innerHTML = wins;
     } else if (y === 0 && x === 2){
         losses ++;
-        return ["You lose! Rock beats scissors!", x, y];
+        loss_counter.innerHTML = losses;
     } else if (y === 1 && x === 0){
         losses ++;
-        return ["You lose! Paper beats rock!", x, y];
+        loss_counter.innerHTML = losses;
     } else if (y === 1 && x === 2){
         wins ++;
-        return ["You win! Scissors beats paper!", x, y];
+        win_counter.innerHTML = wins;
     } else if (y === 2 && x === 0){
         wins ++;
-        return ["You win! Rock beats scissors!", x, y];
+        win_counter.innerHTML = wins;
     } else if (y === 2 && x === 1){
         losses ++;
-        return ["You lose! Scissors beats paper!", x, y];
-    } else {
-        console.log("TRY AGAIN");
-        return playRound(x, y);
-    }
+        loss_counter.innerHTML = losses;
+    } 
 }
    
 
-function game(){
 
-    for (let i = 0; i <= 4; i++){
-        console.log(playRound());
-    }
 
-    if (wins > losses){
-        return ["You won the game!", wins, losses, ties];
-    } else if (losses > wins){
-        return ["You lost the game!", wins, losses, ties];
-    } else {
-        return ["It was a tie! Do you want to play again?", "wins: " + wins, "losses: " + losses, "ties: " + ties];
-    }
-}
 
-console.log(game());
