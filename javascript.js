@@ -40,7 +40,27 @@ btn_test.addEventListener('click', () => {
 function getComputerChoice(){
     let computerChoice = Math.floor(Math.random() * 3);
     return computerChoice;
-}
+};
+
+function resetCounters(){
+    wins = 0;
+    losses = 0;
+    ties = 0;
+    win_counter.innerHTML = wins;
+    loss_counter.innerHTML = losses;
+    tie_counter.innerHTML = ties;
+
+};
+
+function checkWinner() {
+    if (wins == 5){
+        winner_counter.innerHTML = "player";
+        resetCounters();
+    } else if (losses == 5){
+        winner_counter.innerHTML = "computer";
+        resetCounters();
+    }
+};
 
 function playRound(x, y){
    y = getComputerChoice();
@@ -66,8 +86,10 @@ function playRound(x, y){
     } else if (y === 2 && x === 1){
         losses ++;
         loss_counter.innerHTML = losses;
-    } 
-}
+    };
+
+    checkWinner();
+};
    
 
 
