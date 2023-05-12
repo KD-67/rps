@@ -4,12 +4,14 @@
 let wins = 0;
 let losses = 0;
 let ties = 0;
+let gameOver = false;
 
 const btn_test = document.querySelector('#btn_test');
 const page_title = document.querySelector('#page_title')
 const btn_r = document.querySelector('#btn_r');
 const btn_p = document.querySelector('#btn_p');
 const btn_s = document.querySelector('#btn_s');
+const btn_reset = document.querySelector('#btn_reset')
 const win_counter = document.querySelector('#wins');
 const loss_counter = document.querySelector('#losses');
 const tie_counter = document.querySelector('#ties');
@@ -35,6 +37,10 @@ btn_test.addEventListener('click', () => {
     page_title.textContent = "poop";
 });
 
+btn_reset.addEventListener('click', () => {
+    resetCounters();
+});
+
 //Functions:
 
 function getComputerChoice(){
@@ -49,21 +55,26 @@ function resetCounters(){
     win_counter.innerHTML = wins;
     loss_counter.innerHTML = losses;
     tie_counter.innerHTML = ties;
-
+    winner_counter.innerHTML = "___";
+    gameOver = false;
 };
 
 function checkWinner() {
     if (wins == 5){
         winner_counter.innerHTML = "player";
-        resetCounters();
+        gameOver = true;
     } else if (losses == 5){
         winner_counter.innerHTML = "computer";
-        resetCounters();
-    }
+        gameOver = true;
+    };
 };
 
 function playRound(x, y){
-   y = getComputerChoice();
+    if (gameOver == true){
+        return;
+    };
+
+    y = getComputerChoice();
   
     if (y === x) {
         ties ++;
